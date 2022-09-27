@@ -1,0 +1,509 @@
+*{
+
+    padding: 0px;
+    list-style: none;
+    margin: 0px;
+    text-decoration: none;
+}
+
+
+
+body{
+
+    background-color:#f0f2f5;
+}
+
+
+.space{
+
+    width: 100%;
+    height: 87px;
+}
+
+.global{
+
+    width: 100%;
+}
+
+section{
+
+    display: flex;
+    width: 60%;
+    margin: 0px auto;
+}
+
+
+.left{
+
+    width: 55%;
+
+
+}
+
+h1{
+
+    width:80% ;
+    font-size: 3em;
+    color: #1777f2;
+    padding-left: 5px;
+
+}
+
+h2{
+
+font-size: 2em;
+padding-left: 5px;
+
+}
+
+h3{
+
+    color: rgb(66, 66, 66);
+    padding-left: 5px;
+    margin-bottom: 13px;
+
+}
+
+.cuentas{
+    display: flex;
+    width: 100%;
+    height: 200px;
+    padding-top: 6px;
+
+
+}
+
+#salto{
+
+    display: flex;
+    flex-direction: column;
+    width: 26%;
+    background-color: white;
+    margin-left: 12px;
+    height: 182px;
+    cursor: pointer;
+    box-shadow: rgb(173,169,169);
+    transition: 1s;
+
+}
+
+
+.accounts{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    height: 182px;
+    cursor: pointer;
+    box-shadow: rgb(173,169,169);
+    transition: 1s;
+
+
+
+
+}
+
+.accounts:hover{
+
+
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    transition: 1s;
+}
+.picture{
+    text-align: center;
+    width: 100%;
+    height: 165px;
+    background: white;
+    border-radius: 10px;
+
+
+}
+
+img{
+
+
+    width: 30%;
+    height: 100%;
+    object-fit:contain;
+
+}
+
+h4{
+
+    text-align: center;
+    background-color: #dfdfdf;
+    color: #0771ad;
+}
+
+
+.rigth{
+
+    display: flex;
+    width: 45%;
+    flex-direction: column;
+    text-align: center;
+    padding: 8px;
+}
+
+.login{
+
+    display: flex;
+    flex-direction: column;
+    padding-top: 13px;
+    width: 78%;
+    margin: 0 auto;
+    align-items:center ;
+    margin-top: 5em;
+    background-color: white;
+    height: 250px;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    
+   
+}
+
+input{
+
+    width: 89%;
+    display: block;
+    height: 36px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+
+.b-sesion {
+
+    display: block;
+    width: 75%;
+    background-color: #1877f2;
+    color: white;
+    height: 36px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 1s;
+
+}
+
+.b-sesion:hover{
+
+    background: #0771ad;
+    transition: 1s;
+
+}
+
+.login a{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    width: 50%;
+    color: white;
+    background-color: #42b72a;
+    height: 35px;
+    border-radius: 5px;
+    transition: 1s;
+}
+
+
+.login a:hover{
+
+    background-color: #296b1c;
+    transition: 1s;
+
+}
+
+
+
+h5{
+
+    border-bottom: 2px solid #ccc;
+    padding-top: 6px;
+    padding-bottom: 15px;
+    width: 75%;
+    text-align: center;
+    color: #1877f2;
+}
+
+
+h6{
+
+    font-size: 20px;
+    margin-top: 18px;
+    color: #505050;
+
+}
+
+
+h6 a {
+
+
+    color: black;
+}
+
+.whitediv{
+
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 62em;
+    align-items:center;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(255, 255, 255, 0.8);
+    cursor: pointer;
+
+}
+
+
+
+
+.case{
+
+    width: 100%;
+    position: absolute;
+
+    height: 53em;
+}
+
+
+
+#register{
+
+    display: flex;
+    flex-direction: column;
+    width: 432px;
+    height: 77%;
+    border: 2px solid #ccc;
+    margin: 0 auto;    
+    order: 1;
+
+
+
+}
+
+#register h2{
+
+    width: 100%;
+    font-size: 40px;
+    padding: 2px;
+    margin-bottom: 5px;
+    order: 1;
+
+
+}
+
+#register p{
+
+     color: gray;
+
+
+}
+
+
+#register a {
+
+    color: lightskyblue;
+}
+
+
+
+
+#register input[type="text"]{
+
+    display: flex;
+    margin-top: 6px;
+    width: 35%;
+    background-color: rgb(245, 246, 247);
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 15px;
+
+
+}
+
+#register input[type="email"],[type="password"], [type="date"]{
+
+        align-self: center;
+        width: 89%;
+        margin-bottom: 10px;
+        background-color: rgb(245, 246, 247);
+        font-size: 15px;
+        text-align: center;
+        color: rgb(134, 134, 134);
+    
+}
+
+
+label{
+
+    display: flex;
+    width: 24%;
+    text-align: center;
+    font-size: 15px;
+    border: 1px solid black;
+    margin: 0 auto;
+    justify-items: center;
+    align-items: center;
+    padding-left: 10px;
+    box-sizing: border-box;
+
+}
+#register input[type="radio"]{
+
+    width: 22%;
+    border: 2px solid gray;
+    margin: 0 auto;
+    border: 1px solid black;
+
+}
+
+#register .prm{
+
+    width: 393px;
+    height: 11%;
+    padding: 20px;
+    z-index: 2;
+
+
+
+}
+
+#register .sgp{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid #dadde1;
+    box-sizing: border-box;
+    padding: 16px;
+    position: relative;
+    width: 432px;
+
+}
+
+
+.genero{
+
+    width: 100%;
+    margin-bottom: 16px;
+
+}
+
+.registerP{
+
+
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+}
+
+
+
+.registrate{
+
+    background-color: rgb(2, 164, 18,1);
+    color: white;
+    width: 50%;
+    height: 2em;
+    border-radius: 10%;
+}
+
+
+
+/* login */
+
+
+.darkdiv{
+
+
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 62em;
+    background-color: rgba(65, 65, 65, 0.8);
+    cursor: pointer;
+    
+
+
+}
+
+.login2{
+
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 432px;
+    height: 40%;
+    border: 2px solid #ccc;
+    background-color: white;
+    justify-content: center;
+    left: 35%;   
+    top: 30%;
+
+}
+
+.login2 h6{
+
+    width: 80%;
+    border-bottom: 2px solid gray;
+    padding-bottom: 7px;
+margin: 0px auto;
+}
+
+.login2 input{
+
+
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+
+}
+
+.login2{
+
+    text-align: center;
+}
+
+.login2 button{
+
+
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgb(53, 53, 207);
+    color: white;
+    border-radius: 10%;
+    font-size: 20px;
+
+}
+
+.login2 input[type="checkbox"]{
+
+position: relative;
+right: 20%;
+width: 20%;
+}
+
+.login2 label{
+
+    font-size: 20px;
+    width: 50%;
+    border: none;
+}
+
+
+.login2 h4 {
+
+    background-color: white;
+    margin-top: 8px;
+
+
+}
+

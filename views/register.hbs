@@ -1,0 +1,130 @@
+
+
+
+
+<div class="case">
+
+
+                    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<body>
+    
+
+    <div class="space"></div>
+<div class="global">
+<section>
+<div class="left">
+
+    <h1>facebook</h1>
+    <h2>Inicio de sesion recientes</h2>
+    <h3>Haz click a tu foto o agrega una cuenta</h3>
+
+    <div class="cuentas">
+
+        {{#each cuentas}}
+{{> carrete}}
+
+{{/each}}
+    </div>
+
+</div>
+
+<div class="rigth">
+
+
+    <form action="/login" method="post" class="login">
+
+
+        <input type="email" name= "email" placeholder="correo  electronico o numero de telefono">
+
+        <input type="password" name="contrasena" placeholder="contrasena">
+
+        <button class="b-sesion">Iniciar sesion</button>
+
+        <h5>Olvidaste tu contrasena?</h5>
+
+        <a href="/register">Crear cuenta nueva</a>
+
+
+    </form>
+
+    <h6><a href=""> crea una página</a> para una celebridad, una marca o un negocio.</h6>
+</div>
+</section>   
+
+
+    
+</div>
+
+
+
+<footer>
+
+                {{> footer}}
+
+
+</footer>
+
+
+</body>
+</html>
+
+</div>
+
+
+<div class="whitediv">
+
+
+
+    
+</div>
+
+
+
+<form action="/register" id="register" method="post">
+<div class="prm">
+<h2>Registrate</h2>
+<p>Es Rapido y facil.</p>
+</div>
+
+<div class="sgp">
+    
+<input type="text" placeholder="Nombre" name="name" >
+
+<input type="text"  placeholder="Apellidos" name="lastname" >
+
+<input type="email"  placeholder="numero de movil o correo electronico" name="email" >
+
+<input type="password" placeholder="contrasena nueva" name="password" >
+
+<p>fecha de nacimiento</p>
+
+<input type="date" name="date" >
+
+<p class="genero">Genero</p>
+
+
+
+ <label for="gender">Hombre<input type="radio" name="gender" value="male" checked> </label>
+ <label for="gender">Mujer<input type="radio" name="gender" value="female" > </label>
+ <label for="gender">Otro<input type="radio" name="gender" value="otro" > </label>
+
+<p class="registerP">Es posible que usuarios de nuestro servicio hayan subido tu información de contacto a Facebook. <a href=""> más información.</a></p>
+
+<p class="registerP">  <br>
+Al hacer clic en Registrarte, aceptas las Condiciones, la Política de privacidad y la Política de cookies. Es posible que te enviemos notificaciones por SMS, que podrás desactivar cuando quieras.
+</p >
+
+
+<button class="registrate" type="submit">Registrate</button>
+
+
+</div>
+</form>
+

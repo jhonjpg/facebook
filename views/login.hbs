@@ -1,0 +1,111 @@
+
+
+
+
+<div class="case">
+
+
+                    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<body>
+    
+
+    <div class="space"></div>
+<div class="global">
+<section>
+<div class="left">
+
+    <h1>facebook</h1>
+    <h2>Inicio de sesion recientes</h2>
+    <h3>Haz click a tu foto o agrega una cuenta</h3>
+
+    <div class="cuentas">
+
+        {{#each cuentas}}
+{{> carrete}}
+
+{{/each}}
+    </div>
+
+</div>
+
+<div class="rigth">
+
+
+    <form action="/login" method="post" class="login">
+
+
+        <input type="email" name= "email" placeholder="correo  electronico o numero de telefono">
+
+        <input type="password" name="password" placeholder="contrasena">
+
+        <button class="b-sesion">Iniciar sesion</button>
+
+        <h5>Olvidaste tu contrasena?</h5>
+
+        <a href="/register">Crear cuenta nueva</a>
+
+
+    </form>
+
+    <h6><a href=""> crea una página</a> para una celebridad, una marca o un negocio.</h6>
+</div>
+</section>   
+
+
+    
+</div>
+
+
+
+<footer>
+
+                {{> footer}}
+
+
+</footer>
+
+
+</body>
+</html>
+
+</div>
+
+
+<div class="darkdiv">
+    </div>
+
+
+
+ <form action="/login" method="post" class="login2">
+
+    <h6> Iniciar sesion en Facebook</h6>
+
+        <input type="email" name= "email" placeholder="correo  electronico o numero de telefono">
+
+        <input type="password" name="contrasena" placeholder="contrasena">
+
+
+<label for=""> <input type="checkbox" name="" id=""> Recordar contrasena</label>
+
+
+        <button>Iniciar sesion</button>
+
+
+                <h4>Olvidaste tu contrasena?</h4>
+
+
+    </form>
+
+
+
+</form>
+
+
+   
