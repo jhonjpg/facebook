@@ -1,30 +1,13 @@
 const express = require('express');
-const { leerHome, registrarCuentas, confirmarCuenta, loginUser } = require('../controllers/authcontroller');
+const {body} = require("express-validator")
+const { leerHome, registrarCuentas, confirmarCuenta, loginUser,loginform, registrarform, upPhoto } = require('../controllers/authcontroller');
 const { updatefoto } = require('../controllers/photoControllers');
 const router = express.Router()
 
 
 
 
-router.get("/", leerHome)
-router.post("/register", registrarCuentas)
-router.get("/confirmarCuenta/:token", confirmarCuenta)
-router.post("/login", loginUser );
-router.get("/perfil", updatefoto);
-
-
-
-
-
-router.get("/login", (req, res) => {
-
-    
-
-    res.render("login")
-});
-
-
-
+router.get("/", leerHome);
 
 
 router.get("/register", (req, res) => {
@@ -33,6 +16,52 @@ router.get("/register", (req, res) => {
 
 
 });
+
+
+router.post("/register",[
+    body("name", "Ingrese un nombre valido").trim().notEmpty(),
+    body("lastname", "Ingrese un apellido valido").trim().notEmpty(),    
+    body("email", "Ingrese una email valida").trim().isEmail().normalizeEmail(),
+    body("password", "Ingrese una contrasena valida").trim().notEmpty().isLength({min: 2}),
+    body("gender", "Ingrese una genero valida").notEmpty()
+
+
+
+], registrarCuentas)
+
+router.get("/register",registrarform)
+
+
+
+router.get("/confirmarCuenta/:token", confirmarCuenta)
+
+router.get("/login", loginform);
+
+
+router.post("/login",[
+
+    body("email", "El correo electronico que has introducido no esta conectado a una cuenta").trim().isEmail().normalizeEmail(),    
+    body("password", "Ingrese una contrasena valida").trim().isLength({min: 2}) ], loginUser );
+    
+
+
+
+
+
+router.get("/perfil");
+router.post("/perfil", upPhoto);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 router.get("/perfil", (req, res) => {

@@ -89,7 +89,16 @@
 
         <input type="email" name= "email" placeholder="correo  electronico o numero de telefono">
 
-        <input type="password" name="contrasena" placeholder="contrasena">
+       
+        <input type="password" name="password"  placeholder="contrasena">
+
+   {{#each mensajes }}
+
+                <div class="alert">{{this.msg}}</div>
+
+            
+        {{/each}}
+
 
 
 <label for=""> <input type="checkbox" name="" id=""> Recordar contrasena</label>

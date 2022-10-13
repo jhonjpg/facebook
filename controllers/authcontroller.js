@@ -1,4 +1,9 @@
 const Users = require("./models/Users")
+const Photo = require("./models/photo");
+
+const {validationResult} = require("express-validator")
+
+
 const {encrypt, compare} = require("./models/helpers/bcrypt");
 
 
@@ -6,9 +11,15 @@ const {encrypt, compare} = require("./models/helpers/bcrypt");
 
 const leerHome = async (req, res) => {
 
+    const {photo} = req.body
+
+    const pic = await Photo.findOne(photo);
+
     const cuentas = [
         
-        {image: "./assets/add.jpg", nombre:"Agregar cuenta"}
+        {image: pic.photo, nombre:"papaito"}
+
+
     
     ];
 
@@ -16,9 +27,38 @@ const leerHome = async (req, res) => {
 }
 
 
+
+
+const registrarform =  (req, res) => {
+
+    res.render("register", {mensajes:req.flash("mensajes")})
+
+
+    
+}
+
+
 const registrarCuentas = async (req, res) => {
 
+    const errors = validationResult(req);
+
+    if(!errors.isEmpty()) {
+
+
+
+        req.flash("mensajes", errors.array())
+
+   
+
+        return res.redirect("register")
+    }
+
+
+
+
     const {name, lastname, email, password, date, gender} = req.body;
+
+    console.log(req.body)
 
 
     try {
@@ -27,29 +67,33 @@ const registrarCuentas = async (req, res) => {
        if(users) throw new Error('ya existe el ususario');
 
        const passWordawait = await encrypt(password);
-
+       
 
        users = await new Users({name: name, lastname: lastname, email:email, password:passWordawait, date:date, gender:gender,tokenconfirm: "tretre" });
-
-
-
 
 
           await users.save();
 
 
-       res.redirect("/")
+        //   req.flash("mensajes", [{msg: "Revisa tu correo electronico y valida cuenta"}])
+
+
+          res.redirect("/")
 
 
         
     } catch (error) {
 
-        res.json({error: "ocurrio un eroor al registrar este usuario"})
 
+        req.flash("mensajes", [{msg: error.message}])
+
+        res.redirect("/register")
         console.log(error)
+
 
         
     }   
+
 
 }
 
@@ -68,13 +112,14 @@ const confirmarCuenta = async (req, res) => {
         user.tokenconfirm = null
 
         await user.save()
+        
 
         res.redirect("/")
 
     } catch (error) {
 
 
-        res.json({error: error.message})
+        res.json({error: error.mensajes})
 
         
     }
@@ -82,58 +127,73 @@ const confirmarCuenta = async (req, res) => {
 
 }
 
+const loginform =  (req, res) => {
 
+
+    res.render("login", {mensajes: req.flash('mensajes')})
+
+
+
+}
+
+
+ 
 const loginUser = async (req, res) => {
+
+    const errors = validationResult(req);
+
+
+    if(!errors.isEmpty()) {
+
+        req.flash("mensajes", errors.array())
+
+        return res.redirect("/login")
+    }
+
+
 
     const {email, password} = req.body
 
     try {
         
-
         const user = await Users.findOne({email:email});
-        if(!user) throw new Error("no existe ese Usuario")
+        if(!user) throw new Error("El correo electronico que has introducido no esta conectado a una cuenta")
 
         if(!user.cuentaConfirmada) throw new Error("falta confirmar cuenta")
 
        await new Users({email: email, password: password});
 
-
-        let checkPassword =  await compare(password, user.password);
-
-
-      
+            const passWordawait = await encrypt(password); 
+        let checkPassword =  await compare(user.password, passWordawait);
 
         console.log(checkPassword)
+
         console.log(password)
-        console.log(user.password)
+        console.log( user.password)
 
 
-        
 
-       if (checkPassword ){
+                if(checkPassword){
 
-        res.redirect("/perfil")
 
-       }else{
+                    return res.redirect("/perfil")
 
-        throw new Error("contrasena incorrecta")
-       }
+
+                }else{
+
+                throw new Error("contrasena incorrecta")
+
+                }
+
 
        
-
-        
-
-
-
-
-
     } catch (error) {
   
-
-
         console.log(error)
 
-        res.send(error.message)
+        req.flash("mensajes", [{msg: error.message}])
+        return res.redirect("login")
+
         
     }
 
@@ -142,6 +202,38 @@ const loginUser = async (req, res) => {
 
 }
 
+
+
+
+const upPhoto = async (req, res) => {
+
+const {upPhoto}= req.body
+
+console.log(req.body)
+
+
+    try {
+
+
+        photo = await new Photo({photo: upPhoto});
+
+        await photo.save()
+
+        return  await res.render("perfil", {photo: upPhoto} )
+
+
+
+        
+    } catch (error) {
+
+
+
+        res.json({  error: "error al cargar la foto"})
+        console.log(error)
+        
+    }
+
+}
 
 
 
@@ -150,7 +242,10 @@ module.exports = {
 
     leerHome,
     registrarCuentas,
+    registrarform,
     confirmarCuenta,
-    loginUser
+    loginUser,
+    loginform,
+    upPhoto
     
 }

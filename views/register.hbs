@@ -87,27 +87,54 @@
 
 
 
-<form action="/register" id="register" method="post">
+<form action="/register" id="register" method="post" >
 <div class="prm">
-<h2>Registrate</h2>
+<h2>Registrarte</h2>
 <p>Es Rapido y facil.</p>
 </div>
 
 <div class="sgp">
+
+
+        {{#if mensajes}}
+
+{{/if}}
     
-<input type="text" placeholder="Nombre" name="name" >
+<input type="text" placeholder="Nombre" name="name" class="name"  autofocus  >
 
-<input type="text"  placeholder="Apellidos" name="lastname" >
 
-<input type="email"  placeholder="numero de movil o correo electronico" name="email" >
 
-<input type="password" placeholder="contrasena nueva" name="password" >
+<div class="i-name">como te llamas</div>
+
+<input type="text"  placeholder="Apellidos" name="lastname"class="lastname  " >
+
+
+
+
+<div class="i-lastname">como te llamas</div>
+
+
+<input type="email"  placeholder="numero de movil o correo electronico" name="email" class="email " >
+
+
+
+<div class="i-email">usaras estos datos cuando entres y si alguna vez tienes que cambiar la contrasena</div>
+
+
+<input type="password" placeholder="contrasena nueva" name="password"class="password " >
+
+
+
+<div class="i-password">introduce una combinacion de al menos seis numeros, letras y signos de puntuacion (como ! y &).</div>
+
 
 <p>fecha de nacimiento</p>
 
-<input type="date" name="date" >
+<input type="date" name="date" class="date ">
 
-<p class="genero">Genero</p>
+
+
+<p class="genero">Sexo</p>
 
 
 
@@ -122,9 +149,16 @@ Al hacer clic en Registrarte, aceptas las Condiciones, la Política de privacida
 </p >
 
 
-<button class="registrate" type="submit">Registrate</button>
+<button class="registrate" type="submit" >Registrate</button>
 
 
 </div>
+{{!-- 
+{{#each mensajes}}
+<div class="incorrect">{{this.msg}}</div>
+{{/each}} --}}
+
+
 </form>
+
 
