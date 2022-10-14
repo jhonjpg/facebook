@@ -1,9 +1,6 @@
 const Users = require("./models/Users")
 const Photo = require("./models/photo");
-
 const {validationResult} = require("express-validator")
-
-
 const {encrypt, compare} = require("./models/helpers/bcrypt");
 
 
@@ -164,26 +161,20 @@ const loginUser = async (req, res) => {
        await new Users({email: email, password: password});
 
             const passWordawait = await encrypt(password); 
-        let checkPassword =  await compare(user.password, passWordawait);
+        if((!await compare(user.password, passWordawait)))  throw new Error("contrasena incorrecta");
 
-        console.log(checkPassword)
 
-        console.log(password)
+
+        console.log(passWordawait)
         console.log( user.password)
 
 
+            //me esta creando la sesion de usuario atraves de passport
+        req.login(user, function(err){
 
-                if(checkPassword){
-
-
-                    return res.redirect("/perfil")
-
-
-                }else{
-
-                throw new Error("contrasena incorrecta")
-
-                }
+            if(err) throw new Error("error al crear la sesion")
+            res.redirect("/perfil")
+        })
 
 
        
@@ -199,6 +190,23 @@ const loginUser = async (req, res) => {
 
 
 
+
+}
+
+
+
+const closeSession = (req, res) =>  {
+
+
+req.logout((err) => {  
+    
+    if (err)  {
+    
+    console.log(err) ;
+    
+    return res.redirect("/")}
+
+})
 
 }
 
@@ -246,6 +254,7 @@ module.exports = {
     confirmarCuenta,
     loginUser,
     loginform,
-    upPhoto
+    upPhoto,
+    closeSession
     
 }

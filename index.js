@@ -3,7 +3,9 @@
 const express = require("express");
 const session = require("express-session");
 const flash = require("connect-flash")
+const passport = require("passport")
 const {create} = require ("express-handlebars");
+const Users = require("./controllers/models/Users");
 require('dotenv').config()
 require('./database/db')
 
@@ -20,7 +22,24 @@ app.use(session({
     name:"darkess"
 }))
 
-app.use(flash())
+app.use(flash());
+
+
+app.use(passport.initialize())
+app.use(passport.session());
+
+
+
+passport.serializeUser((user, done) => 
+done(null, {id: user._id, name: user.name}));
+
+passport.deserializeUser(async (user, done) => {
+
+    const userdb = await Users.findById(user.id)
+
+    return done(null, {id: userdb._id, name: userdb.name})
+})
+
 
 const hbs = create({
     extname: ".hbs",

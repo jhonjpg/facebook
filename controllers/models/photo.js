@@ -5,6 +5,8 @@ const{Schema} = mongoose;
 const photoSchema = new Schema({
  
     photo:{
+
+        
         type: String,
        
     }
