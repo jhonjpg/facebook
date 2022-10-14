@@ -52,7 +52,7 @@ router.post("/login",[
                         // perfil
 
 
-router.get("/perfil", ) ;
+router.get("/perfil", verifyUser) ;
 router.post("/perfil",  updatefoto);
 
 router.get("/logout", closeSession)

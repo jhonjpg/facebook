@@ -37,7 +37,7 @@ passport.deserializeUser(async (user, done) => {
 
     const userdb = await Users.findById(user.id)
 
-    return done(null, {id: userdb._id, name: userdb.name})
+    return done(null, {id: userdb._id, name: userdb.email})
 })
 
 

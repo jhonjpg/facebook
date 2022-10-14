@@ -198,17 +198,12 @@ const loginUser = async (req, res) => {
 const closeSession = (req, res) =>  {
 
 
-req.logout((err) => {  
+   req.session.destroy()
     
-    if (err)  {
-    
-    console.log(err) ;
-    
-    return res.redirect("/")}
-
-})
+    return res.redirect("/")
 
 }
+
 
 
 
