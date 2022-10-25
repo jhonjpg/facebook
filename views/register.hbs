@@ -88,6 +88,8 @@
 
 
 <form action="/register" id="register" method="post" >
+        <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+
 <div class="prm">
 <h2>Registrarte</h2>
 <p>Es Rapido y facil.</p>
@@ -99,6 +101,8 @@
         {{#if mensajes}}
 
 {{/if}}
+
+
     
 <input type="text" placeholder="Nombre" name="name" class="name"  autofocus  >
 
@@ -130,7 +134,7 @@
 
 <p>fecha de nacimiento</p>
 
-<input type="date" name="date" class="date ">
+<input type="date" name="date" class="date" value="1990-06-01">
 
 
 
@@ -153,12 +157,10 @@ Al hacer clic en Registrarte, aceptas las Condiciones, la Política de privacida
 
 
 </div>
-{{!-- 
+
+
 {{#each mensajes}}
-<div class="incorrect">{{this.msg}}</div>
-{{/each}} --}}
 
+<ul><li>{{this.msg}}</li></ul>
 
-</form>
-
-
+{{/each}}

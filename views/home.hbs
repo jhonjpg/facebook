@@ -10,7 +10,16 @@
 <body>
     
 
-    <div class="space"> </div>
+    <div class="space">
+        
+        
+{{#each mensajes}}
+
+<div class="revisarCorreo"> {{this.msg}}    </div>
+
+{{/each}}
+        
+         </div>
 
 
 <div class="global">
@@ -23,11 +32,22 @@
     <h3>Haz click a tu foto o agrega una cuenta</h3>
 
     <div class="cuentas">
+   
+ <a href="/login" id="salt" > 
+      <div class="accounts">
 
+            <div class="pictur"><img src="../assets/agregar.jpg" alt=""></div>
+            <h4>Anadir cuenta</h4>
 
-        
+    </div>
+</a>
+     
+   
+   
+   
 
         {{#each cuentas}}
+
 {{> carrete}}
 
 {{/each}}
@@ -41,20 +61,24 @@
     <form action="/login" method="post" class="login">
 
 
+        <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+
+
+
         <input type="email" name="email" placeholder="correo  electronico o numero de telefono">
 
         <input type="password" name="password" placeholder="contrasena">
 
         <button class="b-sesion">Iniciar sesion</button>
 
-        <h5>Olvidaste tu contrasena?</h5>
+        <a href="https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0" id="cinc">Olvidaste tu contrasena?</a>
 
-        <a href="/register">Crear cuenta nueva</a>
+        <a href="/register" class="new-account">Crear cuenta nueva</a>
 
 
     </form>
 
-    <h6><a href=""> crea una página</a> para una celebridad, una marca o un negocio.</h6>
+    <h6><a href=""> crea una página</a> para un famoso, una marca o una empresa.</h6>
 </div>
 </section>   
 

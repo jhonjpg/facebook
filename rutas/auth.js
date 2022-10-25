@@ -1,9 +1,10 @@
 const express = require('express');
 const {body} = require("express-validator")
 const { leerHome, registrarCuentas, confirmarCuenta, loginUser,loginform, registrarform, upPhoto, closeSession } = require('../controllers/authcontroller');
-const { updatefoto } = require('../controllers/photoControllers');
+const { perfil, editarPhoto } = require('../controllers/perfilcontroller');
 const verifyUser = require('../middleware/verifyUser');
 const router = express.Router()
+
 
 
 
@@ -52,30 +53,15 @@ router.post("/login",[
                         // perfil
 
 
-router.get("/perfil", verifyUser) ;
-router.post("/perfil",  updatefoto);
+router.get("/perfil", verifyUser, perfil) ;
+router.post("/perfil", verifyUser, editarPhoto);
+
+
 
 router.get("/logout", closeSession)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-router.get("/perfil", (req, res) => {
-
-    res.render("perfil")
-
-
-});
 
 
 

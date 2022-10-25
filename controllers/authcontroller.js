@@ -1,5 +1,5 @@
 const Users = require("./models/Users")
-const Photo = require("./models/photo");
+const PrivUser = require("./models/PrivateUser");
 const {validationResult} = require("express-validator")
 const {encrypt, compare} = require("./models/helpers/bcrypt");
 
@@ -8,19 +8,42 @@ const {encrypt, compare} = require("./models/helpers/bcrypt");
 
 const leerHome = async (req, res) => {
 
-    const {photo} = req.body
 
-    const pic = await Photo.findOne(photo);
 
-    const cuentas = [
+    try {
+
+
+
+        const user = await Users.find().lean()
+
+
+        if(user){
+
+
+                const cuentas = [ {image: user[0].photo, nombre: user[0].name},
+
+            ]
+
+
+            res.render('home',{cuentas: cuentas})
+
+
+            console.log("todo bien")
+
+        }
         
-        {image: pic.photo, nombre:"papaito"}
+     }catch (error) {
 
 
-    
-    ];
+        console.log(error)
+        console.log("todo mal")
+        res.render('home')
 
-    res.render('home', {cuentas: cuentas})
+        
+    }
+
+
+
 }
 
 
@@ -28,7 +51,7 @@ const leerHome = async (req, res) => {
 
 const registrarform =  (req, res) => {
 
-    res.render("register", {mensajes:req.flash("mensajes")})
+    res.render("register")
 
 
     
@@ -55,7 +78,6 @@ const registrarCuentas = async (req, res) => {
 
     const {name, lastname, email, password, date, gender} = req.body;
 
-    console.log(req.body)
 
 
     try {
@@ -63,16 +85,17 @@ const registrarCuentas = async (req, res) => {
         let users = await Users.findOne({email: email})
        if(users) throw new Error('ya existe el ususario');
 
+
        const passWordawait = await encrypt(password);
        
 
-       users = await new Users({name: name, lastname: lastname, email:email, password:passWordawait, date:date, gender:gender,tokenconfirm: "tretre" });
+       users = await new Users({name: name, lastname: lastname, email:email, password:  passWordawait, date:date, gender:gender,tokenconfirm: "tretre" });
 
 
           await users.save();
 
 
-        //   req.flash("mensajes", [{msg: "Revisa tu correo electronico y valida cuenta"}])
+          req.flash("mensajes", [{msg: "Revisa tu correo electronico y valida cuenta"}])
 
 
           res.redirect("/")
@@ -84,8 +107,7 @@ const registrarCuentas = async (req, res) => {
 
         req.flash("mensajes", [{msg: error.message}])
 
-        res.redirect("/register")
-        console.log(error)
+         return res.redirect("/register")
 
 
         
@@ -116,8 +138,8 @@ const confirmarCuenta = async (req, res) => {
     } catch (error) {
 
 
-        res.json({error: error.mensajes})
-
+        req.flash("mensajes", [{msg: error.message}])
+        return res.render("/")
         
     }
 
@@ -127,7 +149,7 @@ const confirmarCuenta = async (req, res) => {
 const loginform =  (req, res) => {
 
 
-    res.render("login", {mensajes: req.flash('mensajes')})
+    res.render("login")
 
 
 
@@ -160,13 +182,13 @@ const loginUser = async (req, res) => {
 
        await new Users({email: email, password: password});
 
-            const passWordawait = await encrypt(password); 
-        if((!await compare(user.password, passWordawait)))  throw new Error("contrasena incorrecta");
+            // const passWordawait = await encrypt(password); 
+
+            
+        if((!await compare(password, user.password)))  throw new Error("contrasena incorrecta");
 
 
 
-        console.log(passWordawait)
-        console.log( user.password)
 
 
             //me esta creando la sesion de usuario atraves de passport
@@ -208,35 +230,33 @@ const closeSession = (req, res) =>  {
 
 
 
-const upPhoto = async (req, res) => {
+// const upPhoto = async (req, res) => {
 
-const {upPhoto}= req.body
-
-console.log(req.body)
+// const {upPhoto}= req.body
 
 
-    try {
+//     try {
 
 
-        photo = await new Photo({photo: upPhoto});
+//         const users = await PrivUser.find({user: req.user.id})
 
-        await photo.save()
 
-        return  await res.render("perfil", {photo: upPhoto} )
+
+//         return  res.render("perfil", {users: users} );
 
 
 
         
-    } catch (error) {
+//     } catch (error) {
 
 
+//         req.flash("mensajes", [{msg: error.message}])
+//         return res.render("perfil")
 
-        res.json({  error: "error al cargar la foto"})
-        console.log(error)
         
-    }
+//     }
 
-}
+// }
 
 
 
@@ -249,7 +269,6 @@ module.exports = {
     confirmarCuenta,
     loginUser,
     loginform,
-    upPhoto,
     closeSession
     
 }

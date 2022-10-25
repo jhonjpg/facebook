@@ -85,7 +85,12 @@
 
  <form action="/login" method="post" class="login2">
 
+
+<input type="hidden" name="_csrf" value="{{csrfToken}}" />
+
+
     <h6> Iniciar sesion en Facebook</h6>
+
 
         <input type="email" name= "email" placeholder="correo  electronico o numero de telefono">
 

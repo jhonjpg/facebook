@@ -1,31 +1,46 @@
+
+
+<div class="block">             
+         <button  ><a class="btn btn-danger" href="logout">Logout</a></button>
+</div>
+
+
 <div class="perfil">
+
+
+    <h2>{{user.name}}</h2>
+    <p>edita aqui tu perfil</p>
+
 
 <div class="foto">
 
+    {{#if photo}}
 
-<img src={{this.photo}} alt="viejo" name="photo" class="photo">
+    <img src="/assets/{{photo}}" alt="viejo"  class="photo">
 
-{{!-- <img src={{this.image }} alt="photo"> --}}
+    {{else}}
 
-{{!-- ../public/assets/viejo.jpg --}}
+    <img src="/assets/camara.jpg" alt="viejo"  class="photo">
+
+{{/if}}
+
+
+
+
+<img src="/assets/camara.jpg" alt="viejo" name="photo" class="photo">
+
 </div>
 
-<form action="perfil"   method="post" >
-             <input type="text" name="upPhoto"/> <h2> Subir foto</h2> 
+<form action="perfil?_csrf={{csrfToken}}"   method="post" enctype="multipart/form-data">
 
-             <input type="submit" class="btn btn-primary">
+             <input type="file" name="upPhoto"> 
+             
 
-
+             <input type="submit" class="btn" value="Cambiar imagen de perfil">
 
 </form>
-<p class="perfilP">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt cupiditate amet, 
-    molestias accusamus veritatis architecto, iste laboriosam optio consequatur, odit reprehenderit inventore dolore nulla. 
-    Nulla perferendis quasi qui reprehenderit tempora? </p>
-
-
-                  <button  ><a class="btn btn-danger" href="logout">Logout</a></button>
-
 
 
 
 </div>
+

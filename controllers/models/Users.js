@@ -3,6 +3,16 @@ const{Schema} = mongoose;
 
 
 const UserSchema = new Schema({
+
+
+    photo:{
+
+        
+        type: String,
+        default: null
+       
+    },
+
  
     name:{
         type: String,
@@ -33,7 +43,6 @@ const UserSchema = new Schema({
  
     password:{
         type: String,
-        lowercase:false,
         required: true,
         
     },
@@ -66,31 +75,6 @@ const UserSchema = new Schema({
 
     
 })
-
-// UserSchema.pre('save', async function (next) {
-
-//     const user = this;
-    
-//     if(!user.isModified('password')) return next()
-
-//     try {
-//         const salt = await bcrypt.genSalt(10)
-//         const hash = await bcrypt.hash(user.password, salt)
-
-//         user.password = hash
-
-//         next()
-//     } catch (error) {
-//         console.log(error)
-//         next()
-//     }
-// });
-
-
-// UserSchema.methods.comparePassword = async (canditePassword) => {
-
-//     return await bcrypt.compare(canditePassword, this.password)
-// }
 
 
 const Users = mongoose.model('Users', UserSchema)
